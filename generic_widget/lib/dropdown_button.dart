@@ -4,12 +4,12 @@ import 'package:generic_widget/helper.dart';
 class GenericDropDownButton<T extends Helper> extends StatefulWidget {
   final List<T> list;
   final T? selectedValue;
-  final Function(T? selectedItem) callBack;
+  final Function(T? selectedItem) callback;
   const GenericDropDownButton({
     super.key,
     required this.list,
     required this.selectedValue,
-    required this.callBack,
+    required this.callback,
   });
 
   @override
@@ -37,27 +37,22 @@ class _GenericDropDownButtonState<T extends Helper>
 
   @override
   Widget build(BuildContext context) {
-    return DropdownButtonHideUnderline(
-      child: DropdownButton<T>(
-        value: drowdownvalue,
-        items: widget.list
-            .map<DropdownMenuItem<T>>(
-              (e) => DropdownMenuItem<T>(
-                value: e,
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 8.0),
-                  child: Text(e.itemValue()),
-                ),
-              ),
-            )
-            .toList(),
-        onChanged: (value) {
-          setState(() {
-            drowdownvalue = value;
-            widget.callBack(value);
-          });
-        },
-      ),
+    return DropdownButton<T>(
+      value: drowdownvalue,
+      items: widget.list
+          .map<DropdownMenuItem<T>>(
+            (e) => DropdownMenuItem<T>(
+              value: e,
+              child: Text(e.itemValue()),
+            ),
+          )
+          .toList(),
+      onChanged: (value) {
+        setState(() {
+          drowdownvalue = value;
+          widget.callback(value);
+        });
+      },
     );
   }
 }

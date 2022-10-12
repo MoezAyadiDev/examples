@@ -31,7 +31,7 @@ class MyWidget extends StatelessWidget {
     List<Langue> langues = const [
       Langue(id: 1, langue: 'English'),
       Langue(id: 2, langue: 'Frensh'),
-      Langue(id: 3, langue: 'Chineese'),
+      Langue(id: 3, langue: 'Chinese'),
     ];
     return Scaffold(
       body: Center(
@@ -41,7 +41,7 @@ class MyWidget extends StatelessWidget {
             GenericDropDownButton<Currency>(
               list: currencies,
               selectedValue: null,
-              callBack: (Currency? selectedItem) {
+              callback: (Currency? selectedItem) {
                 print('new selected currency : ${selectedItem?.itemValue()}');
               },
             ),
@@ -49,7 +49,7 @@ class MyWidget extends StatelessWidget {
             GenericDropDownButton<Langue>(
               list: langues,
               selectedValue: langues[1],
-              callBack: (Langue? selectedItem) {
+              callback: (Langue? selectedItem) {
                 print('new selected langue : ${selectedItem?.itemValue()}');
               },
             ),
